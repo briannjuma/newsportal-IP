@@ -25,6 +25,7 @@ public class App {
         }
         port(port);
 
+        get("/departments","application/json",(request, response) -> gson.toJson(deptDao.allDepartments()));
 
 
         get("/sitemap","application/json",(request, response) ->{
