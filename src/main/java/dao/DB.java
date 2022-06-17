@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 public class DB {
 
-    // public static Sql2o sql2o = new Sql2o("jdbc:postgresql://localhost:5432/news_portal", "njengabrayan", "UBUNTU");
+    // public static Sql2o sql2o = new Sql2o("jdbc:postgresql://localhost:5432/news_portal_test", "njengabrayan", "UBUNTU");
 
     private static URI dbUri;
     public static Sql2o sql2o;
@@ -22,7 +22,7 @@ public class DB {
 
         try {
             if (System.getenv("DATABASE_URL") == null) {
-                dbUri = new URI("postgres://localhost:5432/news_portal");
+                dbUri = new URI("postgres://localhost:5432/news_portal_test");
             } else {
                 dbUri = new URI(System.getenv("DATABASE_URL"));
             }

@@ -52,3 +52,6 @@ src/main/java/models/Credentials.java
 ############
 .idea
 .idea/
+
+## sdkman environment java
+.sdkmanrc
