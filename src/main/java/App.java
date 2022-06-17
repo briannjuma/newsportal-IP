@@ -153,14 +153,17 @@ public class App {
             }
         });
 
+        //        News
+        get("/news","application/json",(request, response) -> gson.toJson(newsDao.allNews()));
+        get("/news/general","application/json",(request, response) -> gson.toJson(newsDao.allGeneralNews()));
+        get("/news/departments","application/json",(request, response) -> gson.toJson(newsDao.allDepartmentalNews()));
+        get("/news/:newsId/details","application/json",(request, response) -> {
+            int newsId = Integer.parseInt(request.params("newsId"));
+            return gson.toJson(newsDao.findById(newsId));
+        });
 
 
-
-
-
-
-
-
+        // Sitemap
         get("/sitemap","application/json",(request, response) ->{
             return gson.toJson(sitemapDao.allPaths());
         });
