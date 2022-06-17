@@ -10,19 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sql2oUserDao implements UserDao {
-    public Sql2oUserDao(){}
+    public Sql2oUserDao() {
+    }
 
     @Override
     public void add(User user) {
         String sql = "INSERT INTO users (name,position,role,department) VALUES (:name,:position,:role,:department);";
         try (Connection con = DB.sql2o.open()) {
-            int id = (int) con.createQuery(sql,true)
+            int id = (int) con.createQuery(sql, true)
                     .bind(user)
                     .executeUpdate()
                     .getKey();
             user.setId(id);
-        } catch (Sql2oException ex){
-            System.out.println("User not added: "+ex);
+        } catch (Sql2oException ex) {
+            System.out.println("User not added: " + ex);
         }
     }
 
@@ -50,7 +51,7 @@ public class Sql2oUserDao implements UserDao {
         String sql = "DELETE from users where id = :id;";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("id",id)
+                    .addParameter("id", id)
                     .executeUpdate();
         }
     }
@@ -65,19 +66,19 @@ public class Sql2oUserDao implements UserDao {
     }
 
     @Override
-    public List<News> myNews(int userId){
-        List<   News> newsList = new ArrayList<>();
+    public List<News> myNews(int userId) {
+        List<News> newsList = new ArrayList<>();
         String jointSql = "SELECT newsid from departments_news WHERE userid = :userid;";
         try (Connection con = DB.sql2o.open()) {
             List<Integer> allIds = con.createQuery(jointSql)
-                    .addParameter("userid",userId)
+                    .addParameter("userid", userId)
                     .executeAndFetch(Integer.class);
 
             String getSql = "SELECT * FROM news WHERE id = :id;";
-            for(int id:allIds){
+            for (int id : allIds) {
                 newsList.add(
                         con.createQuery(getSql)
-                                .addParameter("id",id)
+                                .addParameter("id", id)
                                 .executeAndFetchFirst(News.class)
                 );
             }

@@ -13,20 +13,20 @@ public class DepartmentTest {
     @Rule
     public DatabaseRule databaseRule = new DatabaseRule();
 
-    private Department newDept(){
-        return new Department("Producers","We the best");
+    private Department newDept() {
+        return new Department("Producers", "We the best");
     }
 
     @Test
-    public void initializeCorrectly(){
+    public void initializeCorrectly() {
         Department department = newDept();
         assertTrue(department instanceof Department);
     }
 
     @Test
-    public void getMethodsWorkCorrectly(){
+    public void getMethodsWorkCorrectly() {
         Department department = newDept();
-        assertEquals("Producers",department.getName());
-        assertEquals("We the best",department.getDescription());
+        assertEquals("Producers", department.getName());
+        assertEquals("We the best", department.getDescription());
     }
 }

@@ -1,21 +1,23 @@
 package dao;
 
 import org.sql2o.*;
+
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DB {
 
-   // public static Sql2o sql2o = new Sql2o("jdbc:postgresql://localhost:5432/news_portal", "njengabrayan", "UBUNTU");
+    // public static Sql2o sql2o = new Sql2o("jdbc:postgresql://localhost:5432/news_portal", "njengabrayan", "UBUNTU");
 
     private static URI dbUri;
     public static Sql2o sql2o;
 
 
-
     static Logger logger = LoggerFactory.getLogger(DB.class);
+
     static {
 
         try {
@@ -30,7 +32,7 @@ public class DB {
             String username = (dbUri.getUserInfo() == null) ? "njengabrayan" : dbUri.getUserInfo().split(":")[0];
             String password = (dbUri.getUserInfo() == null) ? "UBUNTU" : dbUri.getUserInfo().split(":")[1];
             sql2o = new Sql2o("jdbc:postgresql://" + host + ":" + port + path, username, password);
-        } catch (URISyntaxException e ) {
+        } catch (URISyntaxException e) {
             logger.error("Unable to connect to database.");
         }
     }
