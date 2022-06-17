@@ -25,14 +25,42 @@ public class App {
         }
         port(port);
 
+
+        //  find available departments
         get("/departments","application/json",(request, response) -> gson.toJson(deptDao.allDepartments()));
 
+        //  create new department
         post("/departments/new","application/json",(request, response) -> {
             Department department = gson.fromJson(request.body(),Department.class);
             deptDao.add(department);
             response.status(201);
             return gson.toJson(department);
         });
+
+        //  find users inside a department
+        get("/departments/:deptId/users/:userId/details","application/json",(request, response) -> {
+            int userId = Integer.parseInt(request.params("userId"));
+            User foundUser = userDao.findById(userId);
+
+            if (foundUser != null) {
+                return gson.toJson(foundUser);
+            }
+            else {
+                return "{\"Error 404!\":\"User not found\"}";
+            }
+        });
+        get("/departments/:deptId/details","application/json",(request, response) -> {
+            int deptId = Integer.parseInt(request.params("deptId"));
+            return gson.toJson(deptDao.findById(deptId));
+        });
+
+
+
+
+
+
+
+
 
         get("/sitemap","application/json",(request, response) ->{
             return gson.toJson(sitemapDao.allPaths());
