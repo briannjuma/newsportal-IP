@@ -117,6 +117,43 @@ public class App {
         });
 
 
+        //        Users
+        get("/users","application/json",(request, response) -> gson.toJson(userDao.allUsers()));
+
+        get("/users/:userId/details","application/json",(request, response) -> {
+            int userId = Integer.parseInt(request.params("userId"));
+            User foundUser = userDao.findById(userId);
+            if (foundUser != null) {
+                return gson.toJson(userDao.findById(userId));
+            }
+            else {
+                return "{\"Error 404!\":\"User not found.\"}";
+            }
+        });
+
+        get("/users/:userId/news","application/json",(request, response) -> {
+            int userId = Integer.parseInt(request.params("userId"));
+            return gson.toJson(userDao.myNews(userId));
+        });
+
+        post("/users/:userId/news/new","application/json",(request, response) -> {
+            int userId = Integer.parseInt(request.params("userId"));
+            User foundUser = userDao.findById(userId);
+
+            if (foundUser != null) {
+                News news = gson.fromJson(request.body(),News.class);
+                news.setAuthor(foundUser.getName());
+                newsDao.add(news);
+                newsDao.addNewsToDepartment(0,news.getId(),userId);
+                response.status(201);
+                return gson.toJson(news);
+            }
+            else {
+                return "{\"Error 404!\":\"User not found. News cannot be posted without an actual user as the author\"}";
+            }
+        });
+
+
 
 
 
