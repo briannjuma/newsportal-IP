@@ -77,6 +77,20 @@ public class App {
         });
 
 
+        // Fetch news
+        get("/departments/:deptId/users/:userId/news","application/json",(request, response) -> {
+            int userId = Integer.parseInt(request.params("userId"));
+            User foundUser = userDao.findById(userId);
+
+            if (foundUser != null) {
+                return gson.toJson(userDao.myNews(userId));
+            }
+            else {
+                return "{\"Error 404!\":\"User not found\"}";
+            }
+        });
+
+
 
 
 
