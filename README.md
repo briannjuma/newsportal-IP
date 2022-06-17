@@ -1,10 +1,16 @@
 # newsportal-IP
-##### Brian Juma
 ## Project description
 A RESTful API for querying and retrieving news within and an interdepartmental organization.
 
-## Setup & installation
+## Usage/Live Link
+Open the following URL in a browser -  https://newsportaljumabrian.herokuapp.com/
 
+## Setup & installation
+#### Executing the Application
+* Download project zip file.
+* After extraction open folder in a java IDE.
+* Executing App.java should launch the application on your computer's local host.
+* Fetch site url from the IDE terminal and open inside browser.
 #### Database Set-up
 + Type `psql` command to connect to postgres server the server.
 + Proceed to create the database `news_portal` by typing: `CREATE DATABASE news_portal;`
@@ -23,3 +29,26 @@ CREATE DATABASE news_portal_test WITH TEMPLATE news_portal;
 + `/users` Lists all the users
 + `/departments` Gets all the departments
 + `/news` Get all news news
+
+## Built with
++ Java programming.
++ Spark routing.
++ Junit for unit testing.
++ PostgreSQL database.
++ Maven build tool.
+
+
+## Contribution
+This is an open project and so all contributions are welcome.
+* Fork project.
+* Make modification.
+* Submit a pull request for review.
+
+## Author
+Brian Juma.
+<br>
+Contact me via email: njengabrianj@gmail.com
+
+## License 
+The project is served under the MIT LICENSE copyright &copy; 2022 jumaBrian.
+View <a href="https://github.com/jumaBrian/newsportal-IP/blob/master/LICENSE">license.</a>
