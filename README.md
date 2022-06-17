@@ -18,3 +18,8 @@ CREATE TABLE departments_users (id serial primary key, deptid int, userid int);
 CREATE TABLE departments_news (id serial primary key, deptid int, newsid int, userid int);
 CREATE DATABASE news_portal_test WITH TEMPLATE news_portal;
 ```
+###### Routes
++ Use the following paths.
++ `/users` Lists all the users
++ `/departments` Gets all the departments
++ `/news` Get all news news
