@@ -27,6 +27,12 @@ public class App {
 
         get("/departments","application/json",(request, response) -> gson.toJson(deptDao.allDepartments()));
 
+        post("/departments/new","application/json",(request, response) -> {
+            Department department = gson.fromJson(request.body(),Department.class);
+            deptDao.add(department);
+            response.status(201);
+            return gson.toJson(department);
+        });
 
         get("/sitemap","application/json",(request, response) ->{
             return gson.toJson(sitemapDao.allPaths());
