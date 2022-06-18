@@ -3,7 +3,7 @@
 A RESTful API for querying and retrieving news within and an interdepartmental organization.
 
 ## Usage/Live Link
-Open the following URL in a browser -  https://newsportaljumabrian.herokuapp.com/
+Open the following URL in a browser -  https://newsportaljumabrian.herokuapp.com/news
 
 ## Setup & installation
 #### Executing the Application
